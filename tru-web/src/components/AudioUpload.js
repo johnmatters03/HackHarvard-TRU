@@ -6,7 +6,7 @@ const AudioUpload = () => {
     fontFamily: 'Courier',
     backgroundColor: '#C73C1E',
     color: '#ffffff',
-    margin: '5%'
+    margin: '10%'
   };
   const [selectedFile, setSelectedFile] = useState(null);
 

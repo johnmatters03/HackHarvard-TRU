@@ -6,7 +6,7 @@ const Content = () => {
     <div className="container">
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Text text="Content" fontSize="1em" textColor="#C73C1E" />
-        <div className="form-container" style={{ margin: '50% 0' }}>
+        <div className="form-container" style={{ margin: '25% 0' }}>
           <AudioUpload />
         </div>
       </div>
