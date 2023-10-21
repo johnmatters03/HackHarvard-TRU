@@ -2,7 +2,7 @@ import React from 'react';
 import Text from '../../../components/Text'; 
 
 
-const NewBiography = () => {
+const Content = () => {
 
   return (
     <div className="container">
@@ -14,4 +14,4 @@ const NewBiography = () => {
 };
 
 
-export default NewBiography;
+export default Content;

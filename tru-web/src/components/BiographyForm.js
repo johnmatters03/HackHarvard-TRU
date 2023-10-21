@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Grid, Typography } from '@mui/material';
 
-const BiographyForm = () => {
+const BiographyForm = ({onButtonClick}) => {
   const [biographyData, setBiographyData] = useState({
     subject: '',
     relationship: '',
@@ -23,7 +23,8 @@ const BiographyForm = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+   onButtonClick();
+   //  e.preventDefault();
     // Handle the form submission, e.g., sending data to the backend
   };
 
@@ -32,7 +33,7 @@ const BiographyForm = () => {
     <form onSubmit={handleSubmit}>
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <Typography style={{ fontFamily: 'Courier' }}>* Who is the subject of this biography?</Typography>
+          <Typography style={{ fontFamily: 'Courier', marginTop: '15px' }}>* Who is the subject of this biography?</Typography>
         </Grid>
         <Grid item xs={5}>
           <TextField
@@ -45,7 +46,7 @@ const BiographyForm = () => {
           />
         </Grid>
         <Grid item xs={6}>
-          <Typography style={{ fontFamily: 'Courier' }}>* What is their relationship to you?</Typography>
+          <Typography style={{ fontFamily: 'Courier', marginTop: '15px' }}>* What is their relationship to you?</Typography>
         </Grid>
         <Grid item xs={5}>
           <TextField
@@ -58,7 +59,7 @@ const BiographyForm = () => {
           />
         </Grid>
         <Grid item xs={6}>
-          <Typography style={{ fontFamily: 'Courier' }}>* What year were they born?</Typography>
+          <Typography style={{ fontFamily: 'Courier', marginTop: '15px' }}>* What year were they born?</Typography>
         </Grid>
         <Grid item xs={5}>
           <TextField
@@ -71,7 +72,7 @@ const BiographyForm = () => {
           />
         </Grid>
         <Grid item xs={6}>
-          <Typography style={{ fontFamily: 'Courier' }}>* What is the author's name?</Typography>
+          <Typography style={{ fontFamily: 'Courier', marginTop: '15px' }}>* What is the author's name?</Typography>
         </Grid>
         <Grid item xs={5}>
           <TextField
@@ -84,7 +85,7 @@ const BiographyForm = () => {
           />
         </Grid>
         <Grid item xs={6}>
-          <Typography style={{ fontFamily: 'Courier' }}>* Pronouns?</Typography>
+          <Typography style={{ fontFamily: 'Courier', marginTop: '15px' }}>* Pronouns?</Typography>
         </Grid>
         <Grid item xs={5}>
           <TextField
@@ -97,7 +98,7 @@ const BiographyForm = () => {
           />
         </Grid>
         <Grid item xs={6}>
-          <Typography style={{ fontFamily: 'Courier' }}>
+          <Typography style={{ fontFamily: 'Courier', marginTop: '10%' }}>
             If possible, give us a brief summary of their background:
           </Typography>
         </Grid>

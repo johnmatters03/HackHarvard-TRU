@@ -9,7 +9,7 @@ body {
    display: flex;
    justify-content: center;
    align-items: center;
-   height: 100vh; /* Set the container to the full viewport height for centering */
+   height: 25%; /* Set the container to the full viewport height for centering */
 }
 
 .centered-content {
