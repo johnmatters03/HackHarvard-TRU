@@ -3,7 +3,7 @@ body {
    background-color: #FEF5E9;
    font-family: 'Courier, monospace';
    text-align: center;
-
+   font-size: 2em;
  }
 
  
@@ -11,6 +11,6 @@ body {
    display: flex;
    justify-content: center;
    align-items: center;
-   height: 40vh;
+   height: 80vh;
  }
  
