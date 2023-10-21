@@ -1,13 +1,13 @@
 import React from 'react';
 import Text from '../../../components/Text';
-import AudioUpload from '../../../components/AudioUpload';
+import FileUpload from '../../../components/FileUpload';
 const Content = () => {
   return (
     <div className="container">
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Text text="Content" fontSize="1em" textColor="#C73C1E" />
         <div className="form-container" style={{ margin: '25% 0' }}>
-          <AudioUpload />
+          <FileUpload />
         </div>
       </div>
     </div>
