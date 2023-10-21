@@ -11,6 +11,12 @@ const BiographyForm = () => {
     briefSummary: '',
   });
 
+  const buttonStyle = {
+   fontFamily: 'Courier',
+   backgroundColor: '#C73C1E', 
+   color: '#ffffff',
+ };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setBiographyData({ ...biographyData, [name]: value });
@@ -22,12 +28,13 @@ const BiographyForm = () => {
   };
 
   return (
+   <div>
     <form onSubmit={handleSubmit}>
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <Typography style={{ fontFamily: 'Courier' }}>* Who is the subject of this biography?</Typography>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <TextField
             fullWidth
             name="subject"
@@ -40,7 +47,7 @@ const BiographyForm = () => {
         <Grid item xs={6}>
           <Typography style={{ fontFamily: 'Courier' }}>* What is their relationship to you?</Typography>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <TextField
             fullWidth
             name="relationship"
@@ -53,7 +60,7 @@ const BiographyForm = () => {
         <Grid item xs={6}>
           <Typography style={{ fontFamily: 'Courier' }}>* What year were they born?</Typography>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <TextField
             fullWidth
             name="birthYear"
@@ -66,7 +73,7 @@ const BiographyForm = () => {
         <Grid item xs={6}>
           <Typography style={{ fontFamily: 'Courier' }}>* What is the author's name?</Typography>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <TextField
             fullWidth
             name="authorName"
@@ -79,7 +86,7 @@ const BiographyForm = () => {
         <Grid item xs={6}>
           <Typography style={{ fontFamily: 'Courier' }}>* Pronouns?</Typography>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <TextField
             fullWidth
             name="pronouns"
@@ -94,7 +101,7 @@ const BiographyForm = () => {
             If possible, give us a brief summary of their background:
           </Typography>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <TextField
             fullWidth
             name="briefSummary"
@@ -102,16 +109,17 @@ const BiographyForm = () => {
             onChange={handleChange}
             variant="outlined"
             multiline
-            rows={4}
+            rows={6}
           />
         </Grid>
         <Grid item xs={12}>
-          <Button type="submit" variant="contained" color="primary">
-            Submit
-          </Button>
-        </Grid>
+            <Button type="submit" variant="contained" style={buttonStyle}>
+              Next
+            </Button>
+          </Grid>
       </Grid>
     </form>
+    </div>
   );
 };
 
