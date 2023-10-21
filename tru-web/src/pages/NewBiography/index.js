@@ -1,13 +1,11 @@
 import React from 'react';
-import Context from "./Context";
-
+import Context from './Context';
 
 const NewBiography = () => {
-
   return (
     <div>
-      <Context/>
-   </div>
+      <Context />
+    </div>
   );
 };
 
