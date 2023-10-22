@@ -4,6 +4,7 @@ import BookReader from '../../components/BookReader';
 import Text from '../../components/Text';
 import ShareButton from '../../components/ShareButton';
 import HomeButton from '../../components/HomeButton';
+import LoadingComponent from '../../components/LoadingComponent';
 
 const Biography = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +25,7 @@ const Biography = () => {
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {isLoading ? ( // Display the loading screen while isLoading is true
         <div style={{ margin: '20px 0' }}>
-          <Text text="Loading..." fontSize="2em" textColor="#C73C1E" />
+          <LoadingComponent />
         </div>
       ) : (
         <>
