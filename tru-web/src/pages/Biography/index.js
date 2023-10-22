@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 import BookReader from '../../components/BookReader';
 import Text from '../../components/Text';
@@ -6,18 +6,40 @@ import ShareButton from '../../components/ShareButton';
 import HomeButton from '../../components/HomeButton';
 
 const Biography = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate a 90-second loading time
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 90000); // 90 seconds in milliseconds
+
+    return () => {
+      // Clear the timeout when the component unmounts
+      clearTimeout(loadingTimer);
+    };
+  }, []);
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={{ position: 'absolute', top: 5, left: 10 }}>
-        <HomeButton />
-      </div>
-      <div style={{ position: 'absolute', top: 5, right: 10 }}>
-        <ShareButton />
-      </div>
-      <div style={{ margin: '20px 0' }}>
-        <Text text="Hello" fontSize="2em" textColor="#C73C1E" />
-      </div>
-      <BookReader />
+      {isLoading ? ( // Display the loading screen while isLoading is true
+        <div style={{ margin: '20px 0' }}>
+          <Text text="Loading..." fontSize="2em" textColor="#C73C1E" />
+        </div>
+      ) : (
+        <>
+          <div style={{ position: 'absolute', top: 5, left: 10 }}>
+            <HomeButton />
+          </div>
+          <div style={{ position: 'absolute', top: 5, right: 10 }}>
+            <ShareButton />
+          </div>
+          <div style={{ margin: '20px 0' }}>
+            <Text text="Hello" fontSize="2em" textColor="#C73C1E" />
+          </div>
+          <BookReader />
+        </>
+      )}
     </div>
   );
 };
