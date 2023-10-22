@@ -105,6 +105,17 @@ def update_item():
     print(inserted['_id'])
     return json.loads(json_util.dumps(inserted))
 
+@app.route('/get_bio', methods=['GET'])
+def get_bio():
+    inserted_id = request.form.get("insertedId")
+    object_id = ObjectId(inserted_id)
+
+    items_collection = mongo_db.biographies
+    result = items_collection.find({'_id': object_id})
+    result = list(result)[0]
+    return json.loads(json_util.dumps(result))
+
+
 @app.route('/add_meta', methods=['POST'])
 def add_meta():
     global GLOBAL_ID
@@ -175,12 +186,13 @@ def add_audio():
                                                                          'biography': my_biography,
                                                                          'date': datetime.datetime.now()}})
 
-    print(result.upserted_id)
-    data_point = items_collection.find({'_id': object_id})
-    inserted = (list(data_point)[0])
-    # print(inserted)
-    print(inserted['_id'])
-    return json.loads(json_util.dumps(inserted))
+    return object_id
+    # print(result.upserted_id)
+    # data_point = items_collection.find({'_id': object_id})
+    # inserted = (list(data_point)[0])
+    # # print(inserted)
+    # print(inserted['_id'])
+    # return json.loads(json_util.dumps(inserted))
 
 
 # Adding Data to MongoDB
