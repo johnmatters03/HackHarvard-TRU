@@ -6,7 +6,9 @@ import Content from '../Content';
 
 const Context = () => {
   const [showContent, setShowContent] = useState(false);
-  const handleNextClick = () => {
+  const [insertedId, setInsertedId] = useState(null);
+  const handleNextClick = (id) => {
+    setInsertedId(id);
     setShowContent(true);
   };
 
@@ -21,7 +23,7 @@ const Context = () => {
   return (
     <div>
       {showContent ? (
-        <Content />
+        <Content insertedId={insertedId} /> 
       ) : (
         <div className="container">
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

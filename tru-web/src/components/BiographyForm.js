@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, Grid, Typography } from '@mui/material';
-import axios from 'axios';
 
 const BiographyForm = ({ onButtonClick, initialValues }) => {
   const [biographyData, setBiographyData] = useState({
@@ -31,20 +30,18 @@ const BiographyForm = ({ onButtonClick, initialValues }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const response = await fetch('http://localhost:5000/add_meta', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(biographyData),
+      body: JSON.stringify(biographyData)
     });
-    
-    
+
     const insertedId = await response.text();
-    console.log("Inserted id", insertedId);
+    console.log('Inserted id', insertedId);
     onButtonClick(insertedId);
-    
   };
 
   return (

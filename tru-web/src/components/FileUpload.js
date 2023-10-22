@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-const FileUpload = () => {
+const FileUpload = ({ insertedId }) => {
   const navigate = useNavigate();
   const buttonStyle = {
     fontFamily: 'Courier',
@@ -31,16 +31,31 @@ const FileUpload = () => {
     if (file) if (file.type === 'text/plain') setSelectedTextFile(file);
   };
 
-  const processFiles = () => {
+  const processFiles = async () => {
     if (selectedAudioFile) {
       const reader = new FileReader();
 
-      reader.onload = (event) => {
+      reader.onload = async (event) => {
         const fileData = event.target.result; // Contains the audio file data as ArrayBuffer
         console.log('Audio File Data (ArrayBuffer):', fileData);
         const audioBlob = new Blob([fileData], { type: selectedAudioFile.type });
         console.log('Audio File Data (Blob):', audioBlob);
-        navigate('/edit'); // Redirect to /edit when an audio file is selected
+
+        const formData = new FormData();
+        formData.append('audioBlob', audioBlob);
+        formData.append('insertedId', insertedId);
+        const response = await fetch('http://localhost:5000/add_audio_blob', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (response.status === 200) {
+          // Successfully processed
+          navigate('/edit');
+        } else {
+          // Handle errors
+          alert('Failed to process the file.');
+        }
       };
       reader.readAsArrayBuffer(selectedAudioFile);
     } else {
