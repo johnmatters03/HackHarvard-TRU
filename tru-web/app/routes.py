@@ -39,8 +39,8 @@ def update_item():
     new_birthYear = request.form.get("birthYear")
     new_biography = request.form.get("biography")
 
-    # new_bioId = request.form.get("bioId")
-    new_bioId = 1 # <-- FAKE
+    new_bioId = request.form.get("bioId")
+    # new_bioId = 1 # <-- FAKE
 
     items_collection = mongo_db.biographies
     past_items = items_collection.find({'_id': new_bioId}).sort({'date': -1})
