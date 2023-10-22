@@ -27,7 +27,7 @@ const Launch = () => {
           </Link>
         </div>
       </div>
-      <BookReader />
+      {/* <BookReader /> */}
     </div>
   );
 };

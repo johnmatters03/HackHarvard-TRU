@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const FileUpload = () => {
+  const navigate = useNavigate();
   const buttonStyle = {
     fontFamily: 'Courier',
     backgroundColor: '#C73C1E',
@@ -38,6 +40,7 @@ const FileUpload = () => {
         console.log('Audio File Data (ArrayBuffer):', fileData);
         const audioBlob = new Blob([fileData], { type: selectedAudioFile.type });
         console.log('Audio File Data (Blob):', audioBlob);
+        navigate('/edit'); // Redirect to /edit when an audio file is selected
       };
       reader.readAsArrayBuffer(selectedAudioFile);
     } else {
@@ -55,9 +58,6 @@ const FileUpload = () => {
       };
       reader.readAsArrayBuffer(selectedTextFile);
     }
-    // else {
-    //   alert('Please select a text file first.');
-    // }
   };
 
   return (
@@ -112,6 +112,7 @@ const FileUpload = () => {
         </Typography>
       )}
       <div style={{ margin: '10% 0' }}></div>
+
       <Button variant="contained" style={buttonStyle} onClick={processFiles}>
         Process
       </Button>
