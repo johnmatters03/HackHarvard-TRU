@@ -6,6 +6,7 @@ const Launch = React.lazy(() => import('./pages/Launch'));
 const NewBiography = React.lazy(() => import('./pages/NewBiography'));
 const OldBiography = React.lazy(() => import('./pages/OldBiography'));
 const EditContent = React.lazy(() => import('./pages/EditContent'));
+const Biography = React.lazy(() => import('./pages/Biography'));
 
 const App = () => {
   return (
@@ -40,6 +41,14 @@ const App = () => {
           element={
             <Suspense fallback={<LoadingComponent />}>
               <EditContent />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/biography"
+          element={
+            <Suspense fallback={<LoadingComponent />}>
+              <Biography />
             </Suspense>
           }
         />
