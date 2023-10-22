@@ -43,6 +43,7 @@ def fcomb(chain, content, number="5"):
 
 # meta: {subject, author, relationship, pronouns, summary, birth_year}
 def biography(src, meta):
+    print(meta)
     llm = OpenAI(model_name="text-davinci-003")
 
     t_parse = """
@@ -86,8 +87,8 @@ def biography(src, meta):
     c_final = LLMChain(llm=llm, prompt = p_final)
 
 
-    parse = fparse(c_parse, src)
-    cat = fcat(c_cat, parse)
+    parse = fparse(c_parse, src, meta)
+    cat = fcat(c_cat, parse, meta)
     comb = fcomb(c_comb, cat, number="5")
 
     text_splitter = RecursiveCharacterTextSplitter(

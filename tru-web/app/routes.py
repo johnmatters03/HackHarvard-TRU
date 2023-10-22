@@ -1,3 +1,8 @@
+import sys
+sys.path.append('models')
+
+
+from model import biography
 from flask import request, jsonify, render_template
 from bson import json_util
 import json
@@ -13,8 +18,8 @@ api_key ='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'
 openai.api_key = api_key
 GLOBAL_ID = 1
 
-def get_bio(transcript):
-    return "No bio yet!"
+def get_bio(transcript, meta):
+    return biography(transcript, meta)
 
 @app.route('/update_item', methods=['POST'])
 def update_item():
@@ -186,8 +191,18 @@ def add_item():
     birthYear = request.form.get("birthYear")
     audioTranscript = audioTranscript["text"]
 
+    meta = { 'subject': subject,
+            'authorName': authorName,
+            'relationship': relationship,
+            'briefSummary': briefSummary,
+            'birthYear': birthYear,
+            'pronouns': pronouns}
+
     items_collection = mongo_db.biographies  # "items" is the name of the collection in MongoDB
 
+    my_bio = get_bio(audioTranscript, meta)
+    print("MY META", meta)
+    print("MY BIO", my_bio)
 
     result = items_collection.insert_one({'subject': subject,
                                           'authorName': authorName,
@@ -197,7 +212,7 @@ def add_item():
                                           'birthYear': birthYear,
                                           'audioData': data,
                                           'audioTranscript': audioTranscript,
-                                          'biography': get_bio(audioTranscript),
+                                          'biography': my_bio,
                                           'date': datetime.datetime.now(), 
                                           'bioId': GLOBAL_ID})
     
@@ -242,4 +257,3 @@ def get_items():
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')  # Reuse the get_items function to return all items when accessing the root endpoint
-
