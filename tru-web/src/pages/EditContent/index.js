@@ -6,12 +6,13 @@ import ContentEdit from '../../components/ContentEdit';
 
 const Launch = () => {
   return (
-    <div className="container">
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Text text="Edit Bibliography" fontSize="1em" textColor="#C73C1E" />
+
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Text text="Edit Bibliography" fontSize="1em" textColor="#C73C1E" />
+      <div className="form-container" style={{ margin: '15px 0' }}>
         <Text text="as generated through audio recordings" fontSize="0.5em" textColor="#000000" />
-        <ContentEdit />
       </div>
+      <ContentEdit />
     </div>
   );
 };

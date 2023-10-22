@@ -89,7 +89,7 @@ const BiographyForm = ({ onButtonClick }) => {
             />
           </Grid>
           <Grid item xs={6}>
-            <Typography style={{ fontFamily: 'Courier', marginTop: '15px' }}>* Pronouns?</Typography>
+            <Typography style={{ fontFamily: 'Courier', marginTop: '15px' }}>* Pronouns of subject?</Typography>
           </Grid>
           <Grid item xs={5}>
             <TextField

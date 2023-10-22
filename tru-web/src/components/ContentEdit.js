@@ -46,24 +46,15 @@ const ContentEdit = () => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '80vh',
-        width: '100%'
-      }}
-    >
+    <div style={{ width: '80%', margin: '0 auto', textAlign: 'center' }}>
       <TextField
         multiline
         fullWidth
-        style={{ width: '100%', height: '100%' }} // Apply the styles here
         variant="outlined"
         label="Biography"
         value={editedContent}
         onChange={handleContentChange}
+        style={{ width: '100%', height: '100%' }}
       />
       <Button variant="contained" color="primary" onClick={handleSubmit}>
         Submit
