@@ -1,9 +1,11 @@
 from flask import Flask
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from flask_cors import CORS
 
 # Create the Flask app instance
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # MongoDB configuration
 app.config['MONGO_URI'] = "mongodb+srv://tru-user:maggerbots@trucluster.ordijtm.mongodb.net/?retryWrites=true&w=majority"  # Replace with your MongoDB URI

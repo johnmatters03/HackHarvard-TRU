@@ -25,16 +25,20 @@ const BiographyForm = ({ onButtonClick }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      // Send a POST request to your Flask backend
-      const response = await axios.post('/add_meta', biographyData);
-      // Assuming the response contains the inserted ID
-      const insertedId = response.data;
-      // Pass the ID up to the parent component
-      onButtonClick(insertedId);
-    } catch (error) {
-      console.error('Error submitting the form:', error);
-    }
+    
+    const response = await fetch('http://localhost:5000/add_meta', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(biographyData),
+    });
+    
+    
+    const insertedId = await response.text();
+    console.log("Inserted id", insertedId);
+    onButtonClick(insertedId);
+    
   };
 
   return (

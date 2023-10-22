@@ -103,12 +103,14 @@ def update_item():
 def add_meta():
     global GLOBAL_ID
 
-    subject = request.form.get("subject")
-    authorName = request.form.get("authorName")
-    relationship = request.form.get("relationship")
-    pronouns = request.form.get("pronouns")
-    briefSummary = request.form.get("briefSummary")
-    birthYear = request.form.get("birthYear")
+    r_json = request.get_json()
+    subject = r_json['subject']
+    # print("Subject", subject)
+    authorName = r_json['authorName']
+    relationship = r_json['relationship']
+    pronouns = r_json['pronouns']
+    briefSummary = r_json['briefSummary']
+    birthYear = r_json['birthYear']
 
     items_collection = mongo_db.biographies  # "items" is the name of the collection in MongoDB
 
@@ -123,7 +125,8 @@ def add_meta():
 
     GLOBAL_ID += 1
 
-    return result.inserted_id
+    print(result.inserted_id)
+    return str(result.inserted_id)
 
 @app.route('/add_audio', methods=['POST'])
 def add_audio():
@@ -140,6 +143,7 @@ def add_audio():
 
     items_collection = mongo_db.biographies  # "items" is the name of the collection in MongoDB
 
+    my_item = items_collection.find({'_id': inserted_id})
     my_biography = get_bio(audioTranscript)
 
     result = items_collection.update_one({'_id': inserted_id}, {'$set': {'audioData': data, 
