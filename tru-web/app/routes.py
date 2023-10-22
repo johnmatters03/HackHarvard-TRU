@@ -16,8 +16,6 @@ GLOBAL_ID = 1
 def get_bio(transcript):
     return "No bio yet!"
 
-
-
 @app.route('/update_item', methods=['POST'])
 def update_item():
     file = request.files['audio']
