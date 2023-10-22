@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const ContentEdit = () => {
+  const navigate = useNavigate();
   const [content, setContent] = useState('');
   const [editedContent, setEditedContent] = useState('');
+  const buttonStyle = {
+    fontFamily: 'Courier',
+    backgroundColor: '#C73C1E',
+    color: '#ffffff',
+    margin: '10px'
+  };
 
   useEffect(() => {
     // Fetch the initial content from the backend when the component mounts
@@ -39,6 +47,7 @@ const ContentEdit = () => {
         // Redirect to /biography with the updated content as a query parameter
         // history.push(`/?content=${encodeURIComponent(editedContent)}`);
         // history.push(`/?content=$hello`);
+        navigate('/');
       })
       .catch((error) => {
         console.error('Error updating data:', error);
@@ -56,8 +65,9 @@ const ContentEdit = () => {
         onChange={handleContentChange}
         style={{ width: '100%', height: '100%' }}
       />
-      <Button variant="contained" color="primary" onClick={handleSubmit}>
-        Submit
+
+      <Button variant="contained" style={buttonStyle} onClick={handleSubmit}>
+        Process
       </Button>
     </div>
   );
