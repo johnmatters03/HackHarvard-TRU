@@ -50,8 +50,9 @@ const FileUpload = ({ insertedId }) => {
         });
 
         if (response.status === 200) {
+          const newId = await response.text();
           // Successfully processed
-          navigate('/edit');
+          navigate(`/edit?id=${newId}`);
         } else {
           // Handle errors
           alert('Failed to process the file.');

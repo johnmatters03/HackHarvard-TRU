@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TextField, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-const ContentEdit = () => {
+const ContentEdit = ({ id }) => {
   const navigate = useNavigate();
   const [content, setContent] = useState('');
   const [editedContent, setEditedContent] = useState('');
@@ -15,17 +15,15 @@ const ContentEdit = () => {
 
   useEffect(() => {
     // Fetch the initial content from the backend when the component mounts
-    fetch('/api/biography')
+    fetch(`/get_bio?insertedId=${id}`)
       .then((response) => response.json())
       .then((data) => {
-        setContent(data.content);
-        setEditedContent(data.content);
+        setContent(data.biography);
+        setEditedContent(data.biography);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
-        setEditedContent(
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. A erat nam at lectus urna duis convallis. Sodales ut etiam sit amet nisl purus in mollis. Ultrices in iaculis nunc sed. Nunc aliquet bibendum enim facilisis gravida neque. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Vitae semper quis lectus nulla at. Eget duis at tellus at urna. Ultrices sagittis orci a scelerisque purus semper eget duis. Vulputate mi sit amet mauris commodo quis. Nam aliquam sem et tortor consequat id. Viverra mauris in aliquam sem. Turpis egestas integer eget aliquet nibh praesent. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. A erat nam at lectus urna duis convallis. Sodales ut etiam sit amet nisl purus in mollis. Ultrices in iaculis nunc sed. Nunc aliquet bibendum enim facilisis gravida neque. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Vitae semper quis lectus nulla at. Eget duis at tellus at urna. Ultrices sagittis orci a scelerisque purus semper eget duis. Vulputate mi sit amet mauris commodo quis. Nam aliquam sem et tortor consequat id. Viverra mauris in aliquam sem. Turpis egestas integer eget aliquet nibh praesent. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. A erat nam at lectus urna duis convallis. Sodales ut etiam sit amet nisl purus in mollis. Ultrices in iaculis nunc sed. Nunc aliquet bibendum enim facilisis gravida neque. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Vitae semper quis lectus nulla at. Eget duis at tellus at urna. Ultrices sagittis orci a scelerisque purus semper eget duis. Vulputate mi sit amet mauris commodo quis. Nam aliquam sem et tortor consequat id. Viverra mauris in aliquam sem. Turpis egestas integer eget aliquet nibh praesent.'
-        ); // delete later
+        // Handle error as needed
       });
   }, []);
 
@@ -34,6 +32,7 @@ const ContentEdit = () => {
   };
 
   const handleSubmit = () => {
+    navigate('/biography');
     // Send a POST request to update the content on the backend
     fetch('/api/updateBiography', {
       method: 'POST',
@@ -51,7 +50,6 @@ const ContentEdit = () => {
       })
       .catch((error) => {
         console.error('Error updating data:', error);
-        navigate('/biography'); // delete later
       });
   };
 
