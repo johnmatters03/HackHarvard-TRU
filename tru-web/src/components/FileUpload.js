@@ -44,7 +44,7 @@ const FileUpload = ({ insertedId }) => {
         const formData = new FormData();
         formData.append('audioBlob', audioBlob);
         formData.append('insertedId', insertedId);
-        const response = await fetch('http://localhost:5000/add_audio_blob', {
+        const response = await fetch('http://localhost:5000/add_audio', {
           method: 'POST',
           body: formData
         });

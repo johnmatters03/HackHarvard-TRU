@@ -2,6 +2,7 @@ import sys
 sys.path.append('models')
 
 
+from bson import ObjectId
 from model import biography
 from flask import request, jsonify, render_template
 from bson import json_util
@@ -135,9 +136,17 @@ def add_meta():
 
 @app.route('/add_audio', methods=['POST'])
 def add_audio():
+    print("HI HANG")
+    print(request)
 
-    file = request.files['audio']
-    inserted_id = request.form.get('inserted_id')
+    file = request.files["audioBlob"]
+    print("FILE")
+    print(file)
+
+    inserted_id = request.form.get('insertedId')
+    print("ID")
+    print(inserted_id)
+    object_id = ObjectId(inserted_id)
 
     data = file.read()
     audio = AudioSegment.from_file(BytesIO(data))
@@ -145,10 +154,11 @@ def add_audio():
         audio.export(temp_file, format='mp3')
         audioTranscript = openai.Audio.transcribe("whisper-1", temp_file)
 
+    audioTranscript = audioTranscript["text"]
 
     items_collection = mongo_db.biographies  # "items" is the name of the collection in MongoDB
 
-    my_item = list(items_collection.find({'_id': inserted_id}).sort({'date': -1}))[0]
+    my_item = list(items_collection.find({'_id': object_id}))[0]
     meta = { 'subject': my_item['subject'],
             'authorName': my_item['authorName'],
             'relationship': my_item['relationship'],
@@ -157,14 +167,16 @@ def add_audio():
             'pronouns': my_item['pronouns'] }
     
 
-    my_biography = get_bio(audioTranscript, meta)
+    # my_biography = get_bio(audioTranscript, meta)
+    my_biography = "HI THIS IS MY BIOGRAPHY"
 
-    result = items_collection.update_one({'_id': inserted_id}, {'$set': {'audioData': data, 
+    result = items_collection.update_one({'_id': object_id}, {'$set': {'audioData': data, 
                                                                          'audioTranscript': audioTranscript,
                                                                          'biography': my_biography,
                                                                          'date': datetime.datetime.now()}})
 
-    data_point = items_collection.find({'_id': result.inserted_id})
+    print(result.upserted_id)
+    data_point = items_collection.find({'_id': object_id})
     inserted = (list(data_point)[0])
     # print(inserted)
     print(inserted['_id'])

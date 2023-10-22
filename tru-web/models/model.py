@@ -43,6 +43,7 @@ def fcomb(chain, content, number="5"):
 
 # meta: {subject, author, relationship, pronouns, summary, birth_year}
 def biography(src, meta):
+    print(src)
     print(meta)
     llm = OpenAI(model_name="text-davinci-003")
 
