@@ -47,10 +47,11 @@ const ContentEdit = () => {
         // Redirect to /biography with the updated content as a query parameter
         // history.push(`/?content=${encodeURIComponent(editedContent)}`);
         // history.push(`/?content=$hello`);
-        navigate('/');
+        navigate('/biography');
       })
       .catch((error) => {
         console.error('Error updating data:', error);
+        navigate('/biography'); // delete later
       });
   };
 
