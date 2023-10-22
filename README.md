@@ -13,4 +13,3 @@ Imagine an evening with your grandmother, where she recalls tales of her youth, 
 - **Biography Customization:** Add pictures, footnotes, or personal annotations. Tailor it to be a reflection of the person’s spirit.
 - **Secure & Private:** Your memories are precious. TRU prioritizes privacy, ensuring your data is protected and never shared.
 - **Share & Print:** With a tap, share the biography with family and friends or get a beautifully bound copy to cherish.
-# HackHarvard-TRU
