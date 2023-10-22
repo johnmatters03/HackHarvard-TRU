@@ -20,11 +20,13 @@ const Launch = () => {
           <Text text="making a new one?" fontSize="0.5em" textColor="000000" />
         </div>
         <div style={{ margin: '50px 0', display: 'flex', justifyContent: 'center' }}>
-          <Text text="Continue" fontSize="0.5em" textColor="#C73C1E" />
+          <Link to="/old-biography">
+            <Text text="Continue" fontSize="0.5em" textColor="#C73C1E" />
+          </Link>
           <div style={{ width: '50px' }}></div>
           <Link to="/new-biography">
             <Text text="New Biography" fontSize="0.5em" textColor="#C73C1E" />
-          </Link>
+          </Link>  
         </div>
       </div>
       {/* <BookReader /> */}

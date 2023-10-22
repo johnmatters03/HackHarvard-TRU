@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Text from '../../../components/Text';
 import './index.css';
 import BiographyForm from '../../../components/BiographyForm';
-import Content from '../Content';
+import OldContent from '../OldContent';
 
 const Context = () => {
   const [showContent, setShowContent] = useState(false);
@@ -11,21 +11,22 @@ const Context = () => {
   };
 
   const initialValues = {
-    subject: '',
-    relationship: '',
-    birthYear: '',
-    authorName: '',
-    pronouns: '',
-    briefSummary: ''
+    subject: 'John Doe',
+    relationship: 'Friend',
+    birthYear: '1980',
+    authorName: 'Author Name',
+    pronouns: 'he/him',
+    briefSummary: 'This is a brief summary.'
   };
+
   return (
     <div>
       {showContent ? (
-        <Content />
+        <OldContent name={initialValues.subject}/>
       ) : (
         <div className="container">
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Text text="Context" fontSize="1em" textColor="#C73C1E" />
+            <Text text="Initial Context" fontSize="1em" textColor="#C73C1E" />
             <div className="form-container" style={{ margin: '25px 0' }}>
               <BiographyForm initialValues={initialValues} onButtonClick={handleNextClick} />
             </div>
