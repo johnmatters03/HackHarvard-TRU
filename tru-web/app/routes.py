@@ -143,8 +143,16 @@ def add_audio():
 
     items_collection = mongo_db.biographies  # "items" is the name of the collection in MongoDB
 
-    my_item = items_collection.find({'_id': inserted_id})
-    my_biography = get_bio(audioTranscript)
+    my_item = list(items_collection.find({'_id': inserted_id}).sort({'date': -1}))[0]
+    meta = { 'subject': my_item['subject'],
+            'authorName': my_item['authorName'],
+            'relationship': my_item['relationship'],
+            'briefSummary': my_item['briefSummary'],
+            'birthYear': my_item['birthYear'],
+            'pronouns': my_item['pronouns'] }
+    
+
+    my_biography = get_bio(audioTranscript, meta)
 
     result = items_collection.update_one({'_id': inserted_id}, {'$set': {'audioData': data, 
                                                                          'audioTranscript': audioTranscript,
