@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Grid, Typography } from '@mui/material';
+import axios from 'axios';
 
 const BiographyForm = ({ onButtonClick }) => {
   const [biographyData, setBiographyData] = useState({
@@ -22,10 +23,18 @@ const BiographyForm = ({ onButtonClick }) => {
     setBiographyData({ ...biographyData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    onButtonClick();
-    //  e.preventDefault();
-    // Handle the form submission, e.g., sending data to the backend
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Send a POST request to your Flask backend
+      const response = await axios.post('/add_meta', biographyData);
+      // Assuming the response contains the inserted ID
+      const insertedId = response.data;
+      // Pass the ID up to the parent component
+      onButtonClick(insertedId);
+    } catch (error) {
+      console.error('Error submitting the form:', error);
+    }
   };
 
   return (
