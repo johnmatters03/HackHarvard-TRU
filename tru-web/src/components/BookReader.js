@@ -68,51 +68,49 @@ const BookReader = () => {
   return (
     <Paper
       elevation={3}
-      style={{ padding: '5%', height: '80vh', width: '80%', border: '5px solid #C73C1E', position: 'relative' }}
+      style={{ padding: '5%', height: '60vh', width: '80%', border: '5px solid #C73C1E', position: 'relative' }}
       tabIndex="0" // Add tabIndex to make the Paper element focusable
     >
       {loading ? ( // Conditional rendering based on the loading state
-        <Typography
-          variant="h6"
-          component="div"
-          style={{ textAlign: 'center', marginTop: '25%', fontFamily: 'Courier' }}
-        >
+        <Typography variant="h6" component="div" style={{ marginTop: '25%', fontFamily: 'Courier' }}>
           Loading content...
         </Typography>
       ) : (
-        <Grid container>
-          {currentPage === 0 ? (
-            <Grid item xs={12}>
-              <Typography
-                variant="h4"
-                component="div"
-                style={{ textAlign: 'center', marginTop: '25%', fontFamily: 'Courier' }}
-              >
-                {bookName}
-              </Typography>
-            </Grid>
-          ) : null}
-          {currentPage === 0 ? null : (
-            <>
-              <Grid item xs={12} sm={6} style={{ borderRight: '1px solid #ccc' }}>
+        <>
+          <Grid container style={{ height: '100%' }}>
+            {currentPage === 0 ? (
+              <Grid item xs={12}>
                 <Typography
-                  variant="body1"
-                  style={{ marginTop: 20, fontFamily: 'Courier', textAlign: 'left', marginLeft: 20, marginRight: 20 }}
+                  variant="h4"
+                  component="div"
+                  style={{ textAlign: 'center', marginTop: '15%', fontFamily: 'Courier' }}
                 >
-                  {pages[currentPage - 1]}
+                  {bookName}
                 </Typography>
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography
-                  variant="body1"
-                  style={{ marginTop: 20, fontFamily: 'Courier', textAlign: 'left', marginLeft: 20, marginRight: 20 }}
-                >
-                  {pages[currentPage]}
-                </Typography>
-              </Grid>
-            </>
-          )}
-        </Grid>
+            ) : null}
+            {currentPage === 0 ? null : (
+              <>
+                <Grid item xs={12} sm={6} style={{ borderRight: '1px solid #ccc' }}>
+                  <Typography
+                    variant="body1"
+                    style={{ marginTop: 20, fontFamily: 'Courier', textAlign: 'left', marginLeft: 20, marginRight: 20 }}
+                  >
+                    {pages[currentPage - 1]}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Typography
+                    variant="body1"
+                    style={{ marginTop: 20, fontFamily: 'Courier', textAlign: 'left', marginLeft: 20, marginRight: 20 }}
+                  >
+                    {pages[currentPage]}
+                  </Typography>
+                </Grid>
+              </>
+            )}
+          </Grid>
+        </>
       )}
       <div
         style={{
