@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Button, Grid, Typography } from '@mui/material';
 import axios from 'axios';
 
-const BiographyForm = ({ onButtonClick }) => {
+const BiographyForm = ({ onButtonClick, initialValues }) => {
   const [biographyData, setBiographyData] = useState({
     subject: '',
     relationship: '',
@@ -11,6 +11,12 @@ const BiographyForm = ({ onButtonClick }) => {
     pronouns: '',
     briefSummary: ''
   });
+
+  useEffect(() => {
+    if (initialValues) {
+      setBiographyData(initialValues);
+    }
+  }, [initialValues]);
 
   const buttonStyle = {
     fontFamily: 'Courier',
